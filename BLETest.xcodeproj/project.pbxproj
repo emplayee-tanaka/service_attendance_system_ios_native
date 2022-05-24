@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DB6B861283C72340091F1F6 /* StampingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6B860283C72340091F1F6 /* StampingViewController.swift */; };
 		5605EF061FE2757F00607AB9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605EF051FE2757F00607AB9 /* Logger.swift */; };
 		560D2B3E20E20DFD00A0FAF7 /* MasterKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */; };
 		56236056206C8C380091485C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 56236055206C8C380091485C /* Settings.bundle */; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2DB6B860283C72340091F1F6 /* StampingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampingViewController.swift; sourceTree = "<group>"; };
 		5605EF051FE2757F00607AB9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterKeyViewController.swift; sourceTree = "<group>"; };
 		56236055206C8C380091485C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				56236055206C8C380091485C /* Settings.bundle */,
 				56E8E7EC1FDF81EC008A3FB8 /* TerminalListViewController.swift */,
 				568DE3B72338A8E7008873DC /* TerminalTimeoutsViewController.swift */,
+				2DB6B860283C72340091F1F6 /* StampingViewController.swift */,
 			);
 			path = BLETest;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB6B861283C72340091F1F6 /* StampingViewController.swift in Sources */,
 				56E8E7ED1FDF81EC008A3FB8 /* TerminalListViewController.swift in Sources */,
 				5605EF061FE2757F00607AB9 /* Logger.swift in Sources */,
 				56D954CB1FDE8C710056AD1F /* MainViewController.swift in Sources */,
@@ -515,7 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Emplayee.Service2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -534,7 +538,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Emplayee.Service2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
