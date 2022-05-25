@@ -529,37 +529,6 @@ class MainViewController: UITableViewController {
         return ret
     }
 
-    /// Returns the description from the battery status.
-    ///
-    /// - Since: 0.4
-    /// - Parameter batteryStatus: the battery status
-    /// - Returns: the description
-    func toBatteryStatusString(
-        batteryStatus: BluetoothTerminalManager.BatteryStatus) -> String {
-
-        var string: String
-
-        switch batteryStatus {
-
-        case .notSupported:
-            string = "Not supported"
-
-        case .none:
-            string = "No battery"
-
-        case .low:
-            string = "Low"
-
-        case .full:
-            string = "Full"
-
-        case .usbPlugged:
-            string = "USB plugged"
-        }
-
-        return string
-    }
-
     // MARK: - Table View
 
     override func tableView(_ tableView: UITableView,
@@ -570,77 +539,6 @@ class MainViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath),
             let reuseIdentifier = cell.reuseIdentifier {
             switch reuseIdentifier {
-
-            case "GetBatteryStatus":
-                // Check the selected card terminal.
-                let terminal: CardTerminal! = self.terminal
-                if terminal == nil {
-
-                    logger.logMsg("Error: Card terminal not selected")
-                    break
-                }
-
-                cell.isUserInteractionEnabled = false
-                DispatchQueue.global().async {
-
-                    do {
-
-                        self.logger.logMsg("Getting the battery status ("
-                            + terminal.name + ")...")
-                        let batteryStatus = try self.manager.batteryStatus(
-                            terminal: terminal,
-                            timeout: 10000)
-                        self.logger.logMsg("Battery Status: "
-                            + self.toBatteryStatusString(
-                                batteryStatus: batteryStatus))
-
-                    } catch {
-
-                        self.logger.logMsg("Error: "
-                            + error.localizedDescription)
-                    }
-
-                    DispatchQueue.main.async {
-                        cell.isUserInteractionEnabled = true
-                    }
-                }
-
-            case "GetBatteryLevel":
-                // Check the selected card terminal.
-                let terminal: CardTerminal! = self.terminal
-                if terminal == nil {
-
-                    logger.logMsg("Error: Card terminal not selected")
-                    break
-                }
-
-                cell.isUserInteractionEnabled = false
-                DispatchQueue.global().async {
-
-                    do {
-
-                        self.logger.logMsg("Getting the battery level ("
-                            + terminal.name + ")...")
-                        let batteryLevel = try self.manager.batteryLevel(
-                            terminal: terminal,
-                            timeout: 10000)
-                        if batteryLevel < 0 {
-                            self.logger.logMsg("Battery Level: Not supported")
-                        } else {
-                            self.logger.logMsg("Battery Level: %d%%",
-                                               batteryLevel)
-                        }
-
-                    } catch {
-
-                        self.logger.logMsg("Error: "
-                            + error.localizedDescription)
-                    }
-
-                    DispatchQueue.main.async {
-                        cell.isUserInteractionEnabled = true
-                    }
-                }
 
             case "GetDeviceInfo":
                 // Check the selected card terminal.
