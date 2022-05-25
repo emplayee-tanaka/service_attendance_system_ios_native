@@ -540,67 +540,6 @@ class MainViewController: UITableViewController {
             let reuseIdentifier = cell.reuseIdentifier {
             switch reuseIdentifier {
 
-            case "GetDeviceInfo":
-                // Check the selected card terminal.
-                let terminal: CardTerminal! = self.terminal
-                if terminal == nil {
-
-                    logger.logMsg("Error: Card terminal not selected")
-                    break
-                }
-
-                let texts = [
-
-                    "System ID        : ",
-                    "Model Number     : ",
-                    "Serial Number    : ",
-                    "Firmware Revision: ",
-                    "Hardware Revision: ",
-                    "Software Revision: ",
-                    "Manufacturer Name: "
-                ]
-
-                let types = [
-
-                    BluetoothTerminalManager.DeviceInfoType.systemId,
-                    BluetoothTerminalManager.DeviceInfoType.modelNumberString,
-                    BluetoothTerminalManager.DeviceInfoType.serialNumberString,
-                    BluetoothTerminalManager.DeviceInfoType.firmwareRevisionString,
-                    BluetoothTerminalManager.DeviceInfoType.hardwareRevisionString,
-                    BluetoothTerminalManager.DeviceInfoType.softwareRevisionString,
-                    BluetoothTerminalManager.DeviceInfoType.manufacturerNameString,
-                ]
-
-                cell.isUserInteractionEnabled = false
-                DispatchQueue.global().async {
-
-                    do {
-
-                        self.logger.logMsg("Getting the device information ("
-                            + terminal.name + ")...")
-                        for i in 0..<texts.count {
-
-                            if let deviceInfo = try self.manager.deviceInfo(
-                                terminal: terminal,
-                                type: types[i],
-                                timeout: 10000) {
-                                self.logger.logMsg(texts[i] + deviceInfo)
-                            } else {
-                                self.logger.logMsg(texts[i] + "Not supported")
-                            }
-                        }
-
-                    } catch {
-
-                        self.logger.logMsg("Error: "
-                            + error.localizedDescription)
-                    }
-
-                    DispatchQueue.main.async {
-                        cell.isUserInteractionEnabled = true
-                    }
-                }
-
             case "ShowCardState":
                 // Check the selected card terminal.
                 let terminal: CardTerminal! = self.terminal
