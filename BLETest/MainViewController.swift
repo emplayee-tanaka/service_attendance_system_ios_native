@@ -329,10 +329,10 @@ class MainViewController: UITableViewController {
     ///
     /// - Parameters:
     ///   - card: the card
-    ///   - filename: the filename
+    ///   - command: 16進数コマンド
     ///   - send: the closure for sending command and receiving response
     func runScript(card: Card,
-                   filename: String,
+                   hexCommand: String,
                    send: (Card, [UInt8]) throws -> [UInt8]) {
 
         // Open the log file.
@@ -342,16 +342,6 @@ class MainViewController: UITableViewController {
         let logFilename = "Log-" + dateFormatter.string(from: currentDate)
             + ".txt"
         logger.openLogFile(name: logFilename)
-        logger.logMsg("Running the script...")
-
-        // Open the script file.
-        logger.logMsg("Opening " + filename + "...")
-        let hScriptFile = openFile(name: filename)
-        if (hScriptFile == nil) {
-
-            logger.logMsg("Error: Script file not found")
-            return
-        }
 
         do {
 
@@ -363,22 +353,21 @@ class MainViewController: UITableViewController {
                 var command = [UInt8]()
 
                 // Read the first line.
-                var line = readLine(hFile: hScriptFile!)
-                while line.count > 0 {
+                while hexCommand.count > 0 {
 
                     // Skip the comment line.
-                    if !line.contains(";") {
+                    if !hexCommand.contains(";") {
 
                         if !commandLoaded {
 
-                            command = Hex.toByteArray(hexString: line)
+                            command = Hex.toByteArray(hexString: hexCommand)
                             if command.count > 0 {
                                 commandLoaded = true
                             }
 
                         } else {
 
-                            if checkLine(line) > 0 {
+                            if checkLine(hexCommand) > 0 {
                                 responseLoaded = true
                             }
                         }
@@ -387,9 +376,6 @@ class MainViewController: UITableViewController {
                     if commandLoaded && responseLoaded {
                         break
                     }
-
-                    // Read the next line.
-                    line = readLine(hFile: hScriptFile!)
                 }
 
                 if !commandLoaded || !responseLoaded {
@@ -418,10 +404,10 @@ class MainViewController: UITableViewController {
                               Double(command.count + response.count) / time)
 
                 logger.logMsg("Expected:")
-                logger.logHexString(line)
+                logger.logHexString(hexCommand)
 
                 // Compare the response.
-                if compareResponse(line: line, response: response) {
+                if compareResponse(line: hexCommand, response: response) {
 
                     logger.logMsg("Compare OK")
 
@@ -440,9 +426,6 @@ class MainViewController: UITableViewController {
 
             logger.logMsg("Error: " + error.localizedDescription)
         }
-
-        // Close the script file.
-        hScriptFile!.closeFile()
 
         // Close the log file.
         logger.closeLogFile()
@@ -464,33 +447,6 @@ class MainViewController: UITableViewController {
         return FileHandle(forReadingAtPath: filePath)
     }
 
-    /// Reads the line from file.
-    ///
-    /// - Parameter hFile: the file handle
-    /// - Returns: the line
-    func readLine(hFile: FileHandle) -> String {
-
-        var line = ""
-
-        // Read the first byte.
-        var buffer = hFile.readData(ofLength: 1)
-        while buffer.count > 0 {
-
-            // Append the byte to the line.
-            if let byteString = String(data: buffer,
-                                       encoding: String.Encoding.ascii) {
-                line += byteString
-                if byteString == "\n" {
-                    break
-                }
-            }
-
-            // Read the next byte.
-            buffer = hFile.readData(ofLength: 1)
-        }
-
-        return line
-    }
 
     /// Checks the line.
     ///
@@ -800,14 +756,6 @@ class MainViewController: UITableViewController {
                     break
                 }
 
-                // Check the selected filename.
-                let filename: String! = self.filename
-                if filename == nil {
-
-                    logger.logMsg("Error: File not selected")
-                    break
-                }
-
                 // Check the selected protocol.
                 var protocolString = ""
                 if protocols[0] {
@@ -848,8 +796,7 @@ class MainViewController: UITableViewController {
                             + card.activeProtocol)
 
                         // Run the script.
-                        self.runScript(card: card, filename: filename) {
-
+                        self.runScript(card: card,hexCommand: getIdmCommand) {
                             let channel = try $0.basicChannel()
                             let commandAPDU = try CommandAPDU(apdu: $1)
                             let responseAPDU = try channel.transmit(
@@ -883,14 +830,6 @@ class MainViewController: UITableViewController {
                     break
                 }
 
-                // Check the selected filename.
-                let filename: String! = self.filename
-                if filename == nil {
-
-                    logger.logMsg("Error: File not selected")
-                    break
-                }
-
                 // Check the control code.
                 var controlCode = 0
                 if let numberString = controlCodeTextField.text,
@@ -919,7 +858,7 @@ class MainViewController: UITableViewController {
                             protocolString: "direct")
 
                         // Run the script.
-                        self.runScript(card: card, filename: filename) {
+                        self.runScript(card: card,hexCommand: getIdmCommand) {
                             return try $0.transmitControlCommand(
                                 controlCode: controlCode,
                                 command: $1)

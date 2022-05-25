@@ -42,58 +42,12 @@ class TerminalListViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        selectTerminalType(self)
+        manager!.startScan(terminalType: .acr1255uj1v2)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func selectTerminalType(_ sender: Any) {
-
-        if let manager = manager {
-
-            let terminalTypeAction0 = UIAlertAction(
-                title: "ACR3901U-S1/ACR3901T-W1",
-                style: .default) { (action) in
-                    manager.startScan(terminalType: .acr3901us1)
-            }
-
-            let terminalTypeAction1 = UIAlertAction(
-                title: "ACR1255U-J1",
-                style: .default) { (action) in
-                    manager.startScan(terminalType: .acr1255uj1)
-            }
-
-            let terminalTypeAction2 = UIAlertAction(
-                title: "AMR220-C",
-                style: .default) { (action) in
-                    manager.startScan(terminalType: .amr220c)
-            }
-
-            let terminalTypeAction3 = UIAlertAction(
-                title: "ACR1255U-J1 V2",
-                style: .default) { (action) in
-                    manager.startScan(terminalType: .acr1255uj1v2)
-            }
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-
-            let alert = UIAlertController(title: "Select a terminal type",
-                                          message: "",
-                                          preferredStyle: .actionSheet)
-
-            alert.addAction(terminalTypeAction0)
-            alert.addAction(terminalTypeAction1)
-            alert.addAction(terminalTypeAction2)
-            alert.addAction(terminalTypeAction3)
-            alert.addAction(cancelAction)
-
-            alert.popoverPresentationController?.barButtonItem = scanButton
-
-            self.present(alert, animated: true)
-        }
     }
 
     // MARK: - Table view data source

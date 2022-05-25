@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DB6B863283EB0E00091F1F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6B862283EB0E00091F1F6 /* Constants.swift */; };
 		5605EF061FE2757F00607AB9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605EF051FE2757F00607AB9 /* Logger.swift */; };
 		560D2B3E20E20DFD00A0FAF7 /* MasterKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */; };
 		56236056206C8C380091485C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 56236055206C8C380091485C /* Settings.bundle */; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2DB6B862283EB0E00091F1F6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5605EF051FE2757F00607AB9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterKeyViewController.swift; sourceTree = "<group>"; };
 		56236055206C8C380091485C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		56CB89901FDBC1F300510A0D /* BLETest */ = {
 			isa = PBXGroup;
 			children = (
+				2DB6B862283EB0E00091F1F6 /* Constants.swift */,
 				56CB89911FDBC1F300510A0D /* AppDelegate.swift */,
 				56CB89981FDBC1F300510A0D /* Assets.xcassets */,
 				56A44E1923FCE7B800D8591D /* CardStateMonitor.swift */,
@@ -325,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56E8E7ED1FDF81EC008A3FB8 /* TerminalListViewController.swift in Sources */,
+				2DB6B863283EB0E00091F1F6 /* Constants.swift in Sources */,
 				5605EF061FE2757F00607AB9 /* Logger.swift in Sources */,
 				56D954CB1FDE8C710056AD1F /* MainViewController.swift in Sources */,
 				56A49D8A1FE0FD7F0050D3F9 /* FileListViewController.swift in Sources */,
