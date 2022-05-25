@@ -910,7 +910,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="カードをかざしてください" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-6Z-TDb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="カードをかざしてください" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmh-6Z-TDb">
                                 <rect key="frame" x="20" y="18" width="207" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <nil key="textColor"/>
@@ -1007,12 +1007,12 @@
                             <constraint firstItem="mvm-ay-jmL" firstAttribute="centerX" secondItem="J2X-Mv-VTL" secondAttribute="centerX" id="AZB-0z-QfL"/>
                             <constraint firstItem="G8D-wL-OIf" firstAttribute="width" secondItem="B9C-6b-Bnz" secondAttribute="width" multiplier="0.5" id="In1-Tl-4yM"/>
                             <constraint firstItem="hmh-6Z-TDb" firstAttribute="centerY" secondItem="J2X-Mv-VTL" secondAttribute="centerY" multiplier="0.25" id="LTT-3y-46X"/>
-                            <constraint firstItem="hmh-6Z-TDb" firstAttribute="centerX" secondItem="J2X-Mv-VTL" secondAttribute="centerX" multiplier="0.4" id="Ui8-12-irv"/>
                             <constraint firstItem="G8D-wL-OIf" firstAttribute="centerX" secondItem="J2X-Mv-VTL" secondAttribute="centerX" multiplier="0.6" id="bxm-4l-DCd"/>
                             <constraint firstItem="G8D-wL-OIf" firstAttribute="centerY" secondItem="J2X-Mv-VTL" secondAttribute="centerY" multiplier="1.2" id="eQR-2A-3kS"/>
                             <constraint firstItem="mvm-ay-jmL" firstAttribute="height" secondItem="B9C-6b-Bnz" secondAttribute="height" multiplier="0.3" id="eTv-F9-71D"/>
                             <constraint firstItem="DhZ-SN-KRv" firstAttribute="centerY" secondItem="J2X-Mv-VTL" secondAttribute="centerY" multiplier="1.2" id="lhV-hY-nXJ"/>
                             <constraint firstItem="mvm-ay-jmL" firstAttribute="width" secondItem="B9C-6b-Bnz" secondAttribute="width" multiplier="0.9" id="oNw-vx-GmY"/>
+                            <constraint firstItem="hmh-6Z-TDb" firstAttribute="leading" secondItem="B9C-6b-Bnz" secondAttribute="leading" constant="50" id="p7c-lL-9Kd"/>
                             <constraint firstItem="mvm-ay-jmL" firstAttribute="centerY" secondItem="J2X-Mv-VTL" secondAttribute="centerY" multiplier="0.7" id="qwd-Wf-8iV"/>
                             <constraint firstItem="DhZ-SN-KRv" firstAttribute="height" secondItem="B9C-6b-Bnz" secondAttribute="height" multiplier="0.1" id="rUn-bp-Wsr"/>
                             <constraint firstItem="G8D-wL-OIf" firstAttribute="height" secondItem="B9C-6b-Bnz" secondAttribute="height" multiplier="0.15" id="tyY-EA-Y2l"/>
