@@ -25,7 +25,6 @@ class MainViewController: UITableViewController {
     @IBOutlet weak var terminalTimeoutsLabel: UILabel!
     @IBOutlet weak var protocolLabel: UILabel!
     @IBOutlet weak var controlCodeTextField: UITextField!
-    @IBOutlet weak var scriptFileLabel: UILabel!
     @IBOutlet weak var showCardStateLabel: UILabel!
     @IBOutlet weak var logTextView: UITextView!
 
@@ -65,7 +64,6 @@ class MainViewController: UITableViewController {
         terminalTimeoutsLabel.text = ""
         protocolLabel.text = "T=0 or T=1"
         controlCodeTextField.text = String(BluetoothTerminalManager.ioctlEscape)
-        scriptFileLabel.text = ""
 
         // Initialize the logger.
         logger = Logger(textView: logTextView)
@@ -192,23 +190,6 @@ class MainViewController: UITableViewController {
                     // Show the selected protocol.
                     protocolViewController.protocols = protocols
                     protocolViewController.delegate = self
-                }
-
-            case "ListFiles":
-                if let fileListViewController = segue.destination
-                    as? FileListViewController {
-
-                    // List files from documents directory.
-                    let paths = NSSearchPathForDirectoriesInDomains(
-                        .documentDirectory, .userDomainMask, true)
-                    let documentsDirectory = paths[0]
-                    if let filenames = try? FileManager.default
-                        .contentsOfDirectory(atPath: documentsDirectory) {
-
-                        fileListViewController.filenames = filenames
-                        fileListViewController.filename = filename
-                        fileListViewController.delegate = self
-                    }
                 }
 
             case "SetMasterKey":
@@ -1145,21 +1126,6 @@ extension MainViewController: ProtocolViewControllerDelegate {
     }
 }
 
-// MARK: - FileListViewControllerDelegate
-extension MainViewController: FileListViewControllerDelegate {
-
-    func fileListViewController(
-        _ fileListViewController: FileListViewController,
-        didSelectFile filename: String) {
-
-        // Store the selected filename.
-        self.filename = filename
-
-        // Update the filename.
-        scriptFileLabel.text = filename
-        tableView.reloadData()
-    }
-}
 
 // MARK: - MasterKeyViewControllerDelegate
 extension MainViewController: MasterKeyViewControllerDelegate {
