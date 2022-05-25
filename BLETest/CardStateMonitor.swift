@@ -102,6 +102,7 @@ final class CardStateMonitor {
         #endif
 
         var prevState = CardState.unknown
+        ///ここでリーダーの変化をキャッチ
         while !Thread.current.isCancelled {
 
             // Get the current state.

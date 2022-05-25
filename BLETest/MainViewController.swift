@@ -146,7 +146,7 @@ class MainViewController: UITableViewController {
 
         if let identifier = segue.identifier {
             switch identifier {
-
+///ここでスキャン画面にterminal,managerを渡す
             case "ScanTerminals":
                 if let navigationViewController = segue.destination
                     as? UINavigationController,
@@ -1325,6 +1325,7 @@ extension MainViewController: CardStateMonitorDelegate {
         } else if prevState.rawValue <= CardStateMonitor.CardState.absent.rawValue
             && currState.rawValue > CardStateMonitor.CardState.absent.rawValue {
             logger.logMsg(terminal.name + ": inserted")
+            ///ここでHTTPリクエスト送る
         }
     }
 }

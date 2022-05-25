@@ -24,6 +24,10 @@
 	<string>$(PRODUCT_NAME) would like to use Bluetooth to connect ACS readers.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use Bluetooth to connect ACS readers.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

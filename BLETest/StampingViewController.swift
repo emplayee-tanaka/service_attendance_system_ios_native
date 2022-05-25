@@ -33,6 +33,12 @@ class StampingViewController: UIViewController {
     
     @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var pairingButton: UIButton!
+    
+    let cardStateMonitor = CardStateMonitor.shared
+    var terminal: CardTerminal?
+    
+    let manager = BluetoothSmartCard.shared.manager
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,21 +46,45 @@ class StampingViewController: UIViewController {
         self.leavingButton.backgroundColor = UIColor.orange
         self.loginButton.backgroundColor = UIColor.green
         self.cancelButton.backgroundColor = UIColor.gray
+        self.pairingButton.backgroundColor = UIColor.cyan
         
         self.attendanceButton.setTitleColor(UIColor.white, for: .normal)
         self.leavingButton.setTitleColor(UIColor.white, for: .normal)
         self.loginButton.setTitleColor(UIColor.white, for: .normal)
         self.cancelButton.setTitleColor(UIColor.white, for: .normal)
+        self.pairingButton.setTitleColor(UIColor.white, for: .normal)
         
         
         self.attendanceButton.titleLabel?.font = UIFont.systemFont(ofSize: 80)
         self.leavingButton.titleLabel?.font = UIFont.systemFont(ofSize: 80)
         self.loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
         self.cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+        self.pairingButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
         
         nameLabel.text = "カードをかざしてください"
+        
+        
+        
+        
+//        let terminal: CardTerminal! = self.terminal
+//
+//        cardStateMonitor.addTerminal(terminal)
 
     }
     
-
+    @IBAction func attendance(_ sender: UIButton) {
+    }
+    
+    @IBAction func leaving(_ sender: UIButton) {
+    }
+    
+    @IBAction func login(_ sender: UIButton) {
+    }
+    
+    @IBAction func cancel(_ sender: UIButton) {
+    }
+    
+    @IBAction func pairing(_ sender: UIButton) {
+    }
+    
 }
