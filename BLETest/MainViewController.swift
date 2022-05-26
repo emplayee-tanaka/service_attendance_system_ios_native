@@ -250,6 +250,9 @@ class MainViewController: UITableViewController {
                         forKey: MainViewController.keyPrefApduTimeout)
                     let controlTimeout = defaults.integer(
                         forKey: MainViewController.keyPrefControlTimeout)
+                    
+                    ///ペアリング成功時に自動的に受信モード（Show Card State）にするため
+                    cardStateMonitor.addTerminal(terminal)
 
                     // Show the settings.
                     terminalTimeoutsLabel.text =
@@ -969,6 +972,75 @@ extension MainViewController: CardStateMonitorDelegate {
         } else if prevState.rawValue <= CardStateMonitor.CardState.absent.rawValue
             && currState.rawValue > CardStateMonitor.CardState.absent.rawValue {
             logger.logMsg(terminal.name + ": inserted")
+            
+                // Check the selected card terminal.
+                let terminal: CardTerminal! = self.terminal
+                if terminal == nil {
+
+                    logger.logMsg("Error: Card terminal not selected")
+                    return
+                }
+
+                // Check the selected protocol.
+                var protocolString = ""
+                if protocols[0] {
+                    if protocols[1] {
+                        protocolString = "*"
+                    } else {
+                        protocolString = "T=0"
+                    }
+                } else {
+                    if protocols[1] {
+                        protocolString = "T=1"
+                    } else {
+                        logger.logMsg("Error: Protocol not selected")
+                        return
+                    }
+                }
+
+                // Clear the log.
+                logger.clear()
+
+                DispatchQueue.global().async {
+
+                    do {
+
+                        // Connect to the card.
+                        self.logger.logMsg("Connecting to the card ("
+                            + terminal.name + ", " + protocolString + ")...")
+                        let card = try terminal.connect(
+                            protocolString: protocolString)
+
+                        // Get the ATR string.
+                        self.logger.logMsg("ATR:")
+                        self.logger.logBuffer(card.atr.bytes)
+
+                        // Get the active protocol.
+                        self.logger.logMsg("Active Protocol: "
+                            + card.activeProtocol)
+
+                        // Run the script.
+                        self.runScript(card: card,hexCommand: getIdmCommand) {
+                            let channel = try $0.basicChannel()
+                            let commandAPDU = try CommandAPDU(apdu: $1)
+                            let responseAPDU = try channel.transmit(
+                                apdu: commandAPDU)
+
+                            return responseAPDU.bytes
+                        }
+
+                        // Disconnect from the card.
+                        self.logger.logMsg("Disconnecting the card ("
+                            + terminal.name + ")...")
+                        try card.disconnect(reset: false)
+
+                    } catch {
+
+                        self.logger.logMsg("Error: "
+                            + error.localizedDescription)
+                    }
+
+                }
         }
     }
 }
