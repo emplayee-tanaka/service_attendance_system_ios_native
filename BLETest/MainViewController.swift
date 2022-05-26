@@ -22,11 +22,17 @@ class MainViewController: UITableViewController {
 
     @IBOutlet weak var terminalLabel: UILabel!
     @IBOutlet weak var terminalTimeoutsLabel: UILabel!
-    @IBOutlet weak var protocolLabel: UILabel!
     @IBOutlet weak var controlCodeTextField: UITextField!
     @IBOutlet weak var showCardStateLabel: UILabel!
     @IBOutlet weak var logTextView: UITextView!
 
+    @IBOutlet weak var cardNumberLabel: UILabel!
+    @IBOutlet weak var cardNumberTextField: UITextField!
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var accountTextField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     static let keyPrefT0GetResponse = "pref_t0_get_response"
     static let keyPrefT1GetResponse = "pref_t1_get_response"
     static let keyPrefT1StripLe = "pref_t1_strip_le"
@@ -360,6 +366,20 @@ class MainViewController: UITableViewController {
 
                 logger.logMsg("Expected:")
                 logger.logHexString(hexCommand)
+                
+                ///ここからレスポンスを表示、リクエスト等の処理
+                let responseToString = response.map({String($0)}).joined()
+                DispatchQueue.main.async {
+                    self.cardNumberTextField.text = responseToString
+                    ///デモのためのコード
+                    if responseToString == "1181181542562211440" {
+                        self.accountTextField.text = "田中　一郎"
+                        self.passwordTextField.text = "tanaka1rou"
+                    } else if responseToString == "146721962032161221311440"{
+                        self.accountTextField.text = "山田　二郎"
+                        self.passwordTextField.text = "yamada2rou"
+                    }
+                }
 
                 // Compare the response.
                 if compareResponse(line: hexCommand, response: response) {
@@ -972,7 +992,7 @@ extension MainViewController: CardStateMonitorDelegate {
         } else if prevState.rawValue <= CardStateMonitor.CardState.absent.rawValue
             && currState.rawValue > CardStateMonitor.CardState.absent.rawValue {
             logger.logMsg(terminal.name + ": inserted")
-            
+            ///カードをかざした時の動作
                 // Check the selected card terminal.
                 let terminal: CardTerminal! = self.terminal
                 if terminal == nil {
