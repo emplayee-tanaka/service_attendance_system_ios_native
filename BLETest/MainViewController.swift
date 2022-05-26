@@ -62,7 +62,6 @@ class MainViewController: UITableViewController {
         terminalLabel.text = ""
         masterKeyLabel.text = ""
         terminalTimeoutsLabel.text = ""
-        protocolLabel.text = "T=0 or T=1"
         controlCodeTextField.text = String(BluetoothTerminalManager.ioctlEscape)
 
         // Initialize the logger.
@@ -181,15 +180,6 @@ class MainViewController: UITableViewController {
                     // Show the selected card terminal.
                     terminalListViewController.terminal = terminal
                     terminalListViewController.delegate = self
-                }
-
-            case "ShowProtocol":
-                if let protocolViewController = segue.destination
-                    as? ProtocolViewController {
-
-                    // Show the selected protocol.
-                    protocolViewController.protocols = protocols
-                    protocolViewController.delegate = self
                 }
 
             case "SetMasterKey":
@@ -927,38 +917,6 @@ extension MainViewController: TerminalListViewControllerDelegate {
         }
 
         // Update the table view.
-        tableView.reloadData()
-    }
-}
-
-// MARK: - ProtocolViewControllerDelegate
-extension MainViewController: ProtocolViewControllerDelegate {
-
-    func protocolViewController(
-        _ protocolViewController: ProtocolViewController,
-        didSelectProtocols protocols: [Bool]) {
-
-        var protocolText = ""
-
-        if protocols[0] {
-            if protocols[1] {
-                protocolText = "T=0 or T=1"
-            } else {
-                protocolText = "T=0"
-            }
-        } else {
-            if protocols[1] {
-                protocolText = "T=1"
-            } else {
-                protocolText = "Unknown"
-            }
-        }
-
-        // Store the selected protocol.
-        self.protocols = protocols
-
-        // Update the protocol text.
-        protocolLabel.text = protocolText
         tableView.reloadData()
     }
 }

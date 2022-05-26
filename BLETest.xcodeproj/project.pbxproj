@@ -17,7 +17,6 @@
 		56641839241637ED00F5402D /* ACSSmartCardIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56641838241637ED00F5402D /* ACSSmartCardIO.xcframework */; };
 		5664183A241637ED00F5402D /* ACSSmartCardIO.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56641838241637ED00F5402D /* ACSSmartCardIO.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		568DE3B82338A8E7008873DC /* TerminalTimeoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568DE3B72338A8E7008873DC /* TerminalTimeoutsViewController.swift */; };
-		56A02A811FDE2D950075E77E /* ProtocolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A02A801FDE2D950075E77E /* ProtocolViewController.swift */; };
 		56A44E1A23FCE7B800D8591D /* CardStateMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A44E1923FCE7B800D8591D /* CardStateMonitor.swift */; };
 		56CB89921FDBC1F300510A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB89911FDBC1F300510A0D /* AppDelegate.swift */; };
 		56CB89971FDBC1F300510A0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CB89951FDBC1F300510A0D /* Main.storyboard */; };
@@ -70,7 +69,6 @@
 		56641834241637DE00F5402D /* SmartCardIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SmartCardIO.xcframework; sourceTree = "<group>"; };
 		56641838241637ED00F5402D /* ACSSmartCardIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ACSSmartCardIO.xcframework; sourceTree = "<group>"; };
 		568DE3B72338A8E7008873DC /* TerminalTimeoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalTimeoutsViewController.swift; sourceTree = "<group>"; };
-		56A02A801FDE2D950075E77E /* ProtocolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolViewController.swift; sourceTree = "<group>"; };
 		56A44E1923FCE7B800D8591D /* CardStateMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStateMonitor.swift; sourceTree = "<group>"; };
 		56CB898E1FDBC1F300510A0D /* BLETest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLETest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CB89911FDBC1F300510A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 				56CB89951FDBC1F300510A0D /* Main.storyboard */,
 				56D954CA1FDE8C710056AD1F /* MainViewController.swift */,
 				560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */,
-				56A02A801FDE2D950075E77E /* ProtocolViewController.swift */,
 				56236055206C8C380091485C /* Settings.bundle */,
 				56E8E7EC1FDF81EC008A3FB8 /* TerminalListViewController.swift */,
 				568DE3B72338A8E7008873DC /* TerminalTimeoutsViewController.swift */,
@@ -329,7 +326,6 @@
 				5605EF061FE2757F00607AB9 /* Logger.swift in Sources */,
 				56D954CB1FDE8C710056AD1F /* MainViewController.swift in Sources */,
 				560D2B3E20E20DFD00A0FAF7 /* MasterKeyViewController.swift in Sources */,
-				56A02A811FDE2D950075E77E /* ProtocolViewController.swift in Sources */,
 				56A44E1A23FCE7B800D8591D /* CardStateMonitor.swift in Sources */,
 				56CB89921FDBC1F300510A0D /* AppDelegate.swift in Sources */,
 				568DE3B82338A8E7008873DC /* TerminalTimeoutsViewController.swift in Sources */,
