@@ -177,6 +177,8 @@ class MainViewController: UITableViewController {
 
                     // Show the selected card terminal.
                     terminalListViewController.terminal = terminal
+                    // Set the manager for scan.
+                    terminalListViewController.manager = manager
                     terminalListViewController.delegate = self
                 }
 
