@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2DB6B863283EB0E00091F1F6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6B862283EB0E00091F1F6 /* Constants.swift */; };
 		5605EF061FE2757F00607AB9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605EF051FE2757F00607AB9 /* Logger.swift */; };
-		560D2B3E20E20DFD00A0FAF7 /* MasterKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */; };
 		56236056206C8C380091485C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 56236055206C8C380091485C /* Settings.bundle */; };
 		5648D8361FE51F0B00BA6228 /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648D8351FE51F0B00BA6228 /* Hex.swift */; };
 		56641835241637DE00F5402D /* SmartCardIO.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56641834241637DE00F5402D /* SmartCardIO.xcframework */; };
@@ -63,7 +62,6 @@
 /* Begin PBXFileReference section */
 		2DB6B862283EB0E00091F1F6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5605EF051FE2757F00607AB9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterKeyViewController.swift; sourceTree = "<group>"; };
 		56236055206C8C380091485C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5648D8351FE51F0B00BA6228 /* Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
 		56641834241637DE00F5402D /* SmartCardIO.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SmartCardIO.xcframework; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				5605EF051FE2757F00607AB9 /* Logger.swift */,
 				56CB89951FDBC1F300510A0D /* Main.storyboard */,
 				56D954CA1FDE8C710056AD1F /* MainViewController.swift */,
-				560D2B3D20E20DFD00A0FAF7 /* MasterKeyViewController.swift */,
 				56236055206C8C380091485C /* Settings.bundle */,
 				56E8E7EC1FDF81EC008A3FB8 /* TerminalListViewController.swift */,
 				568DE3B72338A8E7008873DC /* TerminalTimeoutsViewController.swift */,
@@ -325,7 +322,6 @@
 				2DB6B863283EB0E00091F1F6 /* Constants.swift in Sources */,
 				5605EF061FE2757F00607AB9 /* Logger.swift in Sources */,
 				56D954CB1FDE8C710056AD1F /* MainViewController.swift in Sources */,
-				560D2B3E20E20DFD00A0FAF7 /* MasterKeyViewController.swift in Sources */,
 				56A44E1A23FCE7B800D8591D /* CardStateMonitor.swift in Sources */,
 				56CB89921FDBC1F300510A0D /* AppDelegate.swift in Sources */,
 				568DE3B82338A8E7008873DC /* TerminalTimeoutsViewController.swift in Sources */,

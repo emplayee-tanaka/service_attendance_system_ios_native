@@ -21,7 +21,6 @@ import ACSSmartCardIO
 class MainViewController: UITableViewController {
 
     @IBOutlet weak var terminalLabel: UILabel!
-    @IBOutlet weak var masterKeyLabel: UILabel!
     @IBOutlet weak var terminalTimeoutsLabel: UILabel!
     @IBOutlet weak var protocolLabel: UILabel!
     @IBOutlet weak var controlCodeTextField: UITextField!
@@ -60,7 +59,6 @@ class MainViewController: UITableViewController {
 
         // Initialize the text.
         terminalLabel.text = ""
-        masterKeyLabel.text = ""
         terminalTimeoutsLabel.text = ""
         controlCodeTextField.text = String(BluetoothTerminalManager.ioctlEscape)
 
@@ -182,23 +180,6 @@ class MainViewController: UITableViewController {
                     terminalListViewController.delegate = self
                 }
 
-            case "SetMasterKey":
-                if let masterKeyViewController = segue.destination
-                    as? MasterKeyViewController,
-                    let terminal = terminal,
-                    let defaults = UserDefaults(suiteName: "com.acs.BLETest."
-                        + terminal.name) {
-
-                    // Load the settings.
-                    let enabled = defaults.bool(
-                        forKey: MainViewController.keyPrefUseDefaultKey)
-                    let newKey = defaults.string(
-                        forKey: MainViewController.keyPrefNewKey)
-
-                    masterKeyViewController.isDefaultKeyUsed = enabled
-                    masterKeyViewController.newKey = newKey ?? ""
-                    masterKeyViewController.delegate = self
-                }
 
             case "SetTerminalTimeouts":
                 if let terminalTimeoutsViewController = segue.destination
@@ -269,8 +250,6 @@ class MainViewController: UITableViewController {
                         forKey: MainViewController.keyPrefControlTimeout)
 
                     // Show the settings.
-                    masterKeyLabel.text = isDefaultKeyUsed ?
-                        "Default Key" : "Custom Key"
                     terminalTimeoutsLabel.text =
                         connectionTimeout == TerminalTimeouts.defaultTimeout
                         && powerTimeout == TerminalTimeouts.defaultTimeout
@@ -902,8 +881,6 @@ extension MainViewController: TerminalListViewControllerDelegate {
                 forKey: MainViewController.keyPrefControlTimeout)
 
             // Show the settings.
-            masterKeyLabel.text = isDefaultKeyUsed ?
-                "Default Key" : "Custom Key"
             terminalTimeoutsLabel.text =
                 connectionTimeout == TerminalTimeouts.defaultTimeout
                 && powerTimeout == TerminalTimeouts.defaultTimeout
@@ -918,41 +895,6 @@ extension MainViewController: TerminalListViewControllerDelegate {
 
         // Update the table view.
         tableView.reloadData()
-    }
-}
-
-
-// MARK: - MasterKeyViewControllerDelegate
-extension MainViewController: MasterKeyViewControllerDelegate {
-
-    func masterKeyViewController(
-        _ masterKeyViewController: MasterKeyViewController,
-        didUpdateSettings isDefaultKeyUsed: Bool,
-        newKey: String) {
-
-        // Show the settings.
-        masterKeyLabel.text = isDefaultKeyUsed ? "Default Key" : "Custom Key"
-
-        if let terminal = terminal,
-            let defaults = UserDefaults(suiteName: "com.acs.BLETest."
-                + terminal.name) {
-
-            // Save the settings.
-            defaults.set(isDefaultKeyUsed,
-                         forKey: MainViewController.keyPrefUseDefaultKey)
-            defaults.set(newKey, forKey: MainViewController.keyPrefNewKey)
-
-            // Set the master key.
-            logger.logMsg("Setting the master key (" + terminal.name + ")...")
-            do {
-                try manager.setMasterKey(
-                    terminal: terminal,
-                    masterKey: isDefaultKeyUsed ?
-                        nil : Hex.toByteArray(hexString: newKey))
-            } catch {
-                logger.logMsg("Error: " + error.localizedDescription)
-            }
-        }
     }
 }
 
