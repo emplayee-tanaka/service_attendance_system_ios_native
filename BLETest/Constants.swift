@@ -9,3 +9,4 @@
 import Foundation
 
 let getIdmCommand: String = "FF CA 00 00 00\r\n"
+let postCardNumberAPI: String = "https://bj1ci45en5.execute-api.us-west-2.amazonaws.com/test/postcardnumber"

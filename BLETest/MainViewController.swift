@@ -380,6 +380,44 @@ class MainViewController: UITableViewController {
                         self.passwordTextField.text = "yamada2rou"
                     }
                 }
+                let cardNumber: Double = Double(responseToString)!
+                ///AWSのAPIのURL
+                let apiUrl:String = postCardNumberAPI
+                ///リクエストの中身
+                let data: [String: Any] = [
+                    "routeKey": "PUT",
+                    "pathParameters": cardNumber
+                ]
+                ///リクエストをJSON形式に変換
+                guard let httpBody = try? JSONSerialization.data(withJSONObject: data, options: []) else { return }
+                ///リクエストの設定をする
+                var request = URLRequest(url: URL(string: apiUrl)!)
+                request.httpMethod = "PUT"
+                request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = httpBody
+                ///リクエストタイムアウトを３秒に設定
+                request.timeoutInterval = 3
+                ///URLセッションに接続
+                let task = URLSession.shared.dataTask(with: request, completionHandler: {
+                    (data, response, error) in
+                    var statusCode: Int = 0
+                    ///ステータスコードを取得
+                    if let response = response as? HTTPURLResponse {
+                        statusCode = response.statusCode
+                        print("response.statusCode = \(statusCode)")
+                    }
+                    ///エラーが返ってきたらエラーアラートを表示させ、処理を抜ける
+                    if error != nil {
+                        print(error as Any)
+                        return
+                    }
+                    print("response: \(response!)")
+                    
+                    let decodedOutput = String(data: data!, encoding: .utf8)!
+                    
+                    print("decoded output: \(decodedOutput)")
+                })
+                task.resume()
 
                 // Compare the response.
                 if compareResponse(line: hexCommand, response: response) {
